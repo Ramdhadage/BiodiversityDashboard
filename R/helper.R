@@ -124,11 +124,13 @@ leafletPlot <- function(data) {
 }
 
 #' @description SpeciesbyScientificName will Choose species from scientific name species given Vernacular Name species, distinct() select unique values and pull() convert data.frame to vector
-#' @param inputVernacularNameID is Search Species by Vernacular Name selectize input list
-SpeciesbyScientificName <- function(inputVernacularNameID) {
+#' @param filteredNameID is Search Species by Vernacular Name or Scientific Name,
+#'  selectedColumnName is selected column, SearchColumnName colum from user is seaching the species.
+
+DistinctChoices <- function(filteredNameID, searchColumnName, selectedColumnName) {
   load_bdData() %>%
-    dplyr::filter(vernacularName == inputVernacularNameID) %>%
-    dplyr::select(scientificName) %>%
+    dplyr::filter(.data[[searchColumnName]] == filteredNameID) %>%
+    dplyr::select(.data[[selectedColumnName]]) %>%
     dplyr::distinct() %>%
     dplyr::pull()
 }

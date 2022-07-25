@@ -27,6 +27,7 @@ mod_viewMap_server <- function(id, searchSpeciesIds) {
     # added req so that null plots are not generated
     req(searchSpeciesIds$scientificNameId)
     req(searchSpeciesIds$vernacularNameId)
+
     # select from bddata which contains species name given by user
 
     bdDataFilteredBySpecies <- shiny::reactive(SelectedbdData(
