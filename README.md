@@ -106,15 +106,19 @@ runApp()
     was used to display popups and labels on the map, as well as the
     monthly occurrence plot.
 
--   [ ] Make a separate module for dynamic ui for species selection
-    based on scientific names and vernacular names.
+-   [x] Make a separate module for dynamic ui for species selection
+    based on scientific names and vernacular names.Mod loadData.R was
+    reorganised, given the new name mod01 loadinputs.R.
 
--   [ ] Convert selected species modification code to function from Load
-    Data module.
+-   [x] Convert selected species modification code to function from Load
+    Data module.and functions for dropdownBasedOnRadioBtn and
+    updatedropdownBasedOnRadioBtn were added. I’ve numbered the modules
+    as well as the modules in the workflow order. For dark mode, I also
+    changed appearance plots.
 
 -   [ ] Add more test cases to unit test few more functions.
 
--   [ ] Add images in popups and label using javascript.
+-   [ ] Add images in popups, label and spinners using javascript.
 
     <p align="right">
 

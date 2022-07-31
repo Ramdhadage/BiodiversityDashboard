@@ -65,10 +65,10 @@ runApp()
 - [x] Make sure your app initializes fast and the search field is fast. Use as many optimization techniques as possible.Used shiny cashing for application performance optimization. In addition, [memoise](https://github.com/r-lib/memoise) was utilised to memorise R functions. To read data quickly, I used the fread function from the data.table package. Data in sysdata.rda was updated to be stored as internal data so that app will launched quickly in the package. Instead of choose select-input, server-side-selectize input was used. For visualization , Javascript libraries such as Echarts4r, and leaflet used.  The library shinyWidgets used for input widgets.
 
 - [x] Use JavaScript to create non-trivial visualization.  Javascript was used to display popups and labels on the map, as well as the monthly occurrence plot.
-- [ ] Make a separate module for dynamic ui for species selection based on scientific names and vernacular names.
-- [ ] Convert selected species modification code to function from Load Data module.
+- [x] Make a separate module for dynamic ui for species selection based on scientific names and vernacular names.Mod loadData.R was reorganised, given the new name mod01 loadinputs.R.
+- [x] Convert selected species modification code to function from Load Data module.and functions for dropdownBasedOnRadioBtn and updatedropdownBasedOnRadioBtn were added. I've numbered the modules as well as the modules in the workflow order. For dark mode, I also changed appearance plots.
 - [ ] Add more test cases to unit test few more functions.
-- [ ] Add images in popups and label using javascript.
+- [ ] Add images in popups, label and spinners using javascript.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
