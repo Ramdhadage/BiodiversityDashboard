@@ -7,7 +7,7 @@
 #' @noRd
 #' @import echarts4r shinycssloaders
 #' @importFrom shiny NS tagList
-mod_timelineVisualization_ui <- function(id) {
+mod03_timelineVisualization_ui <- function(id) {
   ns <- NS(id)
   tagList(
     bs4Dash::box(
@@ -24,21 +24,22 @@ mod_timelineVisualization_ui <- function(id) {
 #' mod_timelineVisualization Server Functions
 #'
 #' @noRd
-mod_timelineVisualization_server <- function(id, searchSpeciesIds) {
+mod03_timelineVisualization_server <- function(id, inputList, flg_darkMode) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     bs4Dash::useAutoColor()
     # added req so that null plots are not generated
+    req(inputList$searchByVerOrSciName)
+    req(inputList$selectedBySciOrVerName)
 
-    req(searchSpeciesIds$scientificNameId)
-    req(searchSpeciesIds$vernacularNameId)
-
-    # select from bddata which contains species given by user
-
+    # select from bddata which contains species name given by user
     bdDataFilteredBySpecies <- shiny::reactive(SelectedbdData(
-      searchedVerncularNameID = searchSpeciesIds$vernacularNameId,
-      searchedScientificNameID = searchSpeciesIds$scientificNameId
-    ))
+      radioBtn_search_byName = inputList$radioBtn_searchByName,
+      radioBtn_search_byNameID = "Vernacular Name",
+      searchByVerOrSciName = inputList$searchByVerOrSciName,
+      selectedByVerOrSciName = inputList$selectedBySciOrVerName
+    )) %>% bindCache(inputList$searchByVerOrSciName, inputList$selectedBySciOrVerName)
+
 
     # added cache results to the function monthlyOccurence_m for performance improvement
     monthlyOccurence_m <- memoise::memoise(monthlyOccurence, cache = session$cache)
@@ -58,10 +59,11 @@ mod_timelineVisualization_server <- function(id, searchSpeciesIds) {
           data = occ_bdData(),
           xaxisLabel = "Months",
           yaxisLabel = "Occurences",
-          title = ""
+          title = "",
+          flg_darkMode = flg_darkMode()
         )
       }
     ) %>%
-      shiny::bindCache(searchSpeciesIds$vernacularNameId, searchSpeciesIds$scientificNameId)
+      shiny::bindCache(inputList$searchByVerOrSciName, inputList$selectedBySciOrVerName, flg_darkMode())
   })
 }

@@ -5,7 +5,7 @@
 #' @import leaflet shinycssloaders
 #' @noRd
 
-mod_viewMap_ui <- function(id) {
+mod02_viewMap_ui <- function(id) {
   ns <- NS(id)
   tagList(
     bs4Dash::box(
@@ -21,19 +21,20 @@ mod_viewMap_ui <- function(id) {
 
 #' viewMap Server Functions
 
-mod_viewMap_server <- function(id, searchSpeciesIds) {
+mod02_viewMap_server <- function(id, inputList) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     # added req so that null plots are not generated
-    req(searchSpeciesIds$scientificNameId)
-    req(searchSpeciesIds$vernacularNameId)
+    req(inputList$searchByVerOrSciName)
+    req(inputList$selectedBySciOrVerName)
 
     # select from bddata which contains species name given by user
-
     bdDataFilteredBySpecies <- shiny::reactive(SelectedbdData(
-      searchedVerncularNameID = searchSpeciesIds$vernacularNameId,
-      searchedScientificNameID = searchSpeciesIds$scientificNameId
-    )) %>% bindCache(searchSpeciesIds$vernacularNameId, searchSpeciesIds$scientificNameId)
+      radioBtn_search_byName = inputList$radioBtn_searchByName,
+      radioBtn_search_byNameID = "Vernacular Name",
+      searchByVerOrSciName = inputList$searchByVerOrSciName,
+      selectedByVerOrSciName = inputList$selectedBySciOrVerName
+    )) %>% bindCache(inputList$searchByVerOrSciName, inputList$selectedBySciOrVerName)
 
     # added cache results to the function leafletPlot_m for performance improvement
 
@@ -44,6 +45,6 @@ mod_viewMap_server <- function(id, searchSpeciesIds) {
         leafletPlot_m(bdDataFilteredBySpecies())
       }
     }) %>%
-      shiny::bindCache(searchSpeciesIds$vernacularNameId, searchSpeciesIds$scientificNameId)
+      shiny::bindCache(inputList$searchByVerOrSciName, inputList$selectedBySciOrVerName)
   })
 }
