@@ -26,21 +26,22 @@ app_ui <- function(request) {
 #'     DO NOT REAMOVE.
 #' @import shiny
 app_server <- function(input, output, session) {
-  # Your application server logic
 
-  # initiates searchSpeciesIds reactive list with null
-  searchSpeciesIds <- reactiveValues(
-    vernacularNameId = NULL,
-    scientificNameId = NULL
+  # initiates All inputs values to NULL
+  inputList <- shiny::reactiveValues(
+    radioBtn_searchByName = NULL,
+    searchByVerOrSciName = NULL, # this will returns the searched input values as Species Name by Vernacular or Scientific based on  seach by species radio button choices
+    selectedBySciOrVerName =  NULL # this will returns the  selectedinput values as Species Name by Vernacular or Scientific based on  seach by species radio button choices
   )
-  # load the data, collect user input and  filter as per user input
-  mod_loadData_server("loadData", searchSpeciesIds)
 
+  # create the inputs and store its inputs id for next modules
+  mod01_loadInputs_server("inputs",inputList)
   shiny::observe({
     # added module to map the occurences using leaflet library
-    mod_viewMap_server("map", searchSpeciesIds)
-    # added thid module to plot occurences per month
-    mod_timelineVisualization_server("timeline_plot", searchSpeciesIds)
+    mod02_viewMap_server("map", inputList)
+    # added third module to plot occurrences per month
+    mod03_timelineVisualization_server("timeline_plot", inputList,
+                                       flg_darkMode = reactive(input$dark_mode))
   })
 }
 shiny::shinyApp(
