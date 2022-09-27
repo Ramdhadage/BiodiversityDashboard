@@ -41,7 +41,7 @@ git clone https://github.com/Ramdhadage/BiodiversityDashboard.git
 2.  Install renv package and restore all package
 
 ``` r
-install.package('renv')
+install.packages('renv')
 library(renv)
 renv::restore()
 ```
