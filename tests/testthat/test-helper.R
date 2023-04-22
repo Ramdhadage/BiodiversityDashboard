@@ -1,4 +1,3 @@
-
 cat("Testing SelectedbdData() function \n")
 testthat::test_that("errors", {
   cat("Verify message of NULL values catched correctly or not \n")
