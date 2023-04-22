@@ -11,11 +11,11 @@ SelectedbdData <- function(radioBtn_search_byName, radioBtn_search_byNameID,
       if (radioBtn_search_byName == radioBtn_search_byNameID) {
         load_bdData() %>%
           dplyr::filter(vernacularName == searchByVerOrSciName &
-                          scientificName == selectedByVerOrSciName)
+            scientificName == selectedByVerOrSciName)
       } else {
         load_bdData() %>%
           dplyr::filter(vernacularName == selectedByVerOrSciName &
-                          scientificName == searchByVerOrSciName) # in this section we are selecting species by scientific name.
+            scientificName == searchByVerOrSciName) # in this section we are selecting species by scientific name.
       }
     },
     error = function(e) {
@@ -72,8 +72,8 @@ barplot <- function(data, xaxisLabel, yaxisLabel, title, flg_darkMode = FALSE) {
     ) %>%
     echarts4r::e_title(title, left = "center", textStyle = list(fontWeight = "normal", color = "white")) %>%
     echarts4r::e_title("Drag the slider to access specific part of the plot",
-                       left = "center", top = "85%",
-                       textStyle = list(fontSize = 10, fontWeight = "bolder", color = "lightblue")
+      left = "center", top = "85%",
+      textStyle = list(fontSize = 10, fontWeight = "bolder", color = "lightblue")
     ) %>%
     echarts4r::e_grid(height = "60%") %>%
     echarts4r::e_color("green") %>%
@@ -111,8 +111,8 @@ barplot <- function(data, xaxisLabel, yaxisLabel, title, flg_darkMode = FALSE) {
       ) %>%
       echarts4r::e_title(title, left = "center", textStyle = list(fontWeight = "normal", color = "black")) %>%
       echarts4r::e_title("Drag the slider to access specific part of the plot",
-                         left = "center", top = "85%",
-                         textStyle = list(fontSize = 10, fontWeight = "bolder", color = "black")
+        left = "center", top = "85%",
+        textStyle = list(fontSize = 10, fontWeight = "bolder", color = "black")
       ) %>%
       echarts4r::e_datazoom(x_index = c(0, 1), backgroundColor = "lightgreen") %>%
       echarts4r::e_toolbox_feature(feature = "saveAsImage", iconStyle = list(borderColor = "black")) %>%
@@ -287,7 +287,6 @@ updateDropdownBasedOnRadioBtnValues <- function(radioBtn_search_byName,
                                                 id_ver_name, scientificName_str, vernacularName_str,
                                                 id_selected_sci_name, radioBtn_search_byNameID_sci,
                                                 id_sci_name, id_selected_ver_name, session) {
-
   # added cache results to the function updateSpecies for performance improvement
 
   updateSpecies_m <- memoise::memoise(updateSpecies, cache = session$cache)

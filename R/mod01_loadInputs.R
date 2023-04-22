@@ -74,6 +74,7 @@ mod01_loadInputs_server <- function(id, inputList) {
 
       # Updating InptList with updated inputvalues as species name and Scientific and Vernacular Name
       inputList$radioBtn_searchByName <- input$search_byName
+      req(input$ver_name, input$sci_name) # added req to resolve the issue if_else: `true` must be a vector, not `NULL`
       inputList$searchByVerOrSciName <- if_else(input$search_byName == "Vernacular Name",
         input$ver_name, input$sci_name
       )
@@ -84,6 +85,7 @@ mod01_loadInputs_server <- function(id, inputList) {
     # update the input values of search species by Scientific or Vernacular Name into inputList.
     bindEventExpression_selectedSpecies <- reactive(list(input$selected_sci_name, input$selected_ver_name))
     shiny::observeEvent(bindEventExpression_selectedSpecies(), {
+      req(input$ver_name, input$sci_name) # added req to resolve the issue if_else: `true` must be a vector, not `NULL`
       inputList$searchByVerOrSciName <- if_else(input$search_byName == "Vernacular Name",
         input$ver_name, input$sci_name
       )
