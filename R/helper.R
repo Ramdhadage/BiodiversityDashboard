@@ -204,7 +204,7 @@ freshTheme <- fresh::create_theme(
 createPage <- function(title, subtitle, context) {
   bs4Dash::dashboardPage(
     preloader = list(html = tagList(waiter::spin_1(), "Loading ...")),
-    bs4Dash::dashboardHeader(title = dashboardBrand(
+    bs4Dash::dashboardHeader(title = bs4Dash::dashboardBrand(
       title = title,
       color = "primary",
       href = "",
