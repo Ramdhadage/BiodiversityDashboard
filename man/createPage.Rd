@@ -2,7 +2,7 @@
 % Please edit documentation in R/helper.R
 \name{createPage}
 \alias{createPage}
-\title{This file will create helper functions required for structure buiding}
+\title{This file will create helper functions required for structure building}
 \usage{
 createPage(title, subtitle, context)
 }
@@ -10,5 +10,5 @@ createPage(title, subtitle, context)
 \item{title, }{subtitle, context for header , exra informaton and to set context respectivly.}
 }
 \description{
-This file will create helper functions required for structure buiding
+This file will create helper functions required for structure building
 }
