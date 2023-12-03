@@ -19,6 +19,7 @@ Imports:
     data.table,
     devtools,
     dplyr,
+    dqshiny,
     echarts4r,
     fresh,
     leaflet,
