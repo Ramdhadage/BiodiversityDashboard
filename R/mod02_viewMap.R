@@ -8,33 +8,42 @@
 mod02_viewMap_ui <- function(id) {
   ns <- NS(id)
   tagList(
-    bs4Dash::box(
-      title = "View Map",
-      width = 12,
-      solidHeader = TRUE,
-      status = "success",
-      leaflet::leafletOutput(ns("map")) %>%
-        shinycssloaders::withSpinner(type = 8, size = 0.5, color = "#999999")
-    )
+    leaflet::leafletOutput(ns("map"))
+    # bs4Dash::box(
+    #   title = "View Map",
+    #   width = 12,
+    #   solidHeader = TRUE,
+    #   status = "success",
+    #   leaflet::leafletOutput(ns("map")) %>%
+    #     shinycssloaders::withSpinner(type = 8, size = 0.5, color = "#999999")
+    # )
   )
 }
 
 #' viewMap Server Functions
 
-mod02_viewMap_server <- function(id, inputList) {
+mod02_viewMap_server <- function(id, input_list) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
+
+    bdDataFilteredBySpecies <- shiny::reactive({
+      req(input_list()$scientific_name)
+      req(input_list()$vernacular_name)
+      load_bdData() %>%
+        dplyr::filter(vernacularName == input_list()$vernacular_name &
+                        scientificName == input_list()$scientific_name)
+    })
     # added req so that null plots are not generated
-    req(inputList$searchByVerOrSciName)
-    req(inputList$selectedBySciOrVerName)
+    # req(inputList$searchByVerOrSciName)
+    # req(inputList$selectedBySciOrVerName)
 
     # select from bddata which contains species name given by user
-    bdDataFilteredBySpecies <- shiny::reactive(SelectedbdData(
-      radioBtn_search_byName = inputList$radioBtn_searchByName,
-      radioBtn_search_byNameID = "Vernacular Name",
-      searchByVerOrSciName = inputList$searchByVerOrSciName,
-      selectedByVerOrSciName = inputList$selectedBySciOrVerName
-    )) %>% bindCache(inputList$searchByVerOrSciName, inputList$selectedBySciOrVerName)
+    # bdDataFilteredBySpecies <- shiny::reactive(SelectedbdData(
+    #   radioBtn_search_byName = inputList$radioBtn_searchByName,
+    #   radioBtn_search_byNameID = "Vernacular Name",
+    #   searchByVerOrSciName = inputList$searchByVerOrSciName,
+    #   selectedByVerOrSciName = inputList$selectedBySciOrVerName
+    # )) %>% bindCache(inputList$searchByVerOrSciName, inputList$selectedBySciOrVerName)
 
     # added cache results to the function leafletPlot_m for performance improvement
 
@@ -44,7 +53,6 @@ mod02_viewMap_server <- function(id, inputList) {
       if (bdDataFilteredBySpecies() %>% nrow() != 0) {
         leafletPlot_m(bdDataFilteredBySpecies())
       }
-    }) %>%
-      shiny::bindCache(inputList$searchByVerOrSciName, inputList$selectedBySciOrVerName)
+    })
   })
 }
