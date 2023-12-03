@@ -157,7 +157,7 @@ leafletPlot <- function(data) {
         " basis Of Record: ",
         data$basisOfRecord
       ),
-      clusterOptions = markerClusterOptions()
+      clusterOptions = leaflet::markerClusterOptions()
     )
 }
 
@@ -216,8 +216,7 @@ createPage <- function(title, subtitle, context) {
       shiny::fluidRow(
         column(
           4,
-          mod01_loadInputs_ui("inputs")
-          # mod_loadData_ui("loadData")
+          mod01_search_species_by_ui("input")
         ),
         column(
           8,
