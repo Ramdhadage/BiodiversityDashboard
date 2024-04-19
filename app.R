@@ -12,6 +12,9 @@ pkgload::load_all()
 
 app_ui <- function(request) {
   tagList(
+    tags$script(
+      src = "https://cdn.jsdelivr.net/gh/Appsilon/shiny.tictoc@v0.2.0/shiny-tic-toc.min.js"
+    ),
     # build the ui
     createPage(
       title = "Biodiversity Dashboard",
