@@ -1,5 +1,5 @@
 # Business Logic Functions ------------------------------------------------
-
+#' User Extracted Data
 #' @description  SelectedbdData is subset of biodiversity data corresponding to search by user search for species by their vernacularName and scientificName.
 #' @param searchedVerncularNameID and searchedScientifNameID are input ids of Search Species by Vernacular Name and Search Species by scientific Name
 
@@ -23,7 +23,7 @@ SelectedbdData <- function(radioBtn_search_byName, radioBtn_search_byNameID,
     }
   )
 }
-
+#' Monthly Occurence of Animals
 #' @description monthlyOccurence will count the occurence per month in chronological order
 #' @param data is a data.frame which contain date format column, datecolumn is a date format column
 
@@ -44,7 +44,7 @@ monthlyOccurence <- function(data) {
   )
 }
 
-
+#' Bar Plot
 #' @description barplot function will plot  a bar chart using echarts4r libary.
 #' @param data, xAxisValues, yAxisValues,xaxisLabel,yaxisLabel,title,are paramaeters required to plot bar chart. flg_darkMode is boolean variable for dark mode.
 #' @import echarts4r
@@ -123,7 +123,7 @@ barplot <- function(data, xaxisLabel, yaxisLabel, title, flg_darkMode = FALSE) {
   }
   barplot
 }
-
+#' Leaflet Plot
 #' @description lealetPlot function will map a selected obeservation by user and distribution of its occurences.
 #' @param data used to plot the map
 #' @import leaflet
@@ -160,7 +160,7 @@ leafletPlot <- function(data) {
       clusterOptions = markerClusterOptions()
     )
 }
-
+#' Unique Species
 #' @description DistinctChoices will Choose species from scientific name species given Vernacular Name species, distinct() select unique values and pull() convert data.frame to vector
 #' @param filteredNameID is Search Species by Vernacular Name or Scientific Name,
 #'  selectedColumnName is selected column, SearchColumnName colum from user is seaching the species.
@@ -197,14 +197,16 @@ freshTheme <- fresh::create_theme(
   )
 )
 
-
-#' This file will create helper functions required for structure building
-#' @import shiny bs4Dash shinyWidgets waiter fresh
+#' UI function for the Biodiversity App
+#' @description This file will create helper functions required for structure building
+#' @importFrom bs4Dash insertTab actionButton navbarMenu tabsetPanel column dashboardBrand
+#' @importFrom shinyWidgets progressBar
+#' @import shiny waiter fresh
 #' @param title, subtitle, context for header , exra informaton and to set context respectivly.
 createPage <- function(title, subtitle, context) {
   bs4Dash::dashboardPage(
     preloader = list(html = tagList(waiter::spin_1(), "Loading ...")),
-    bs4Dash::dashboardHeader(title = dashboardBrand(
+    bs4Dash::dashboardHeader(title = bs4Dash::dashboardBrand(
       title = title,
       color = "primary",
       href = "",
@@ -242,6 +244,7 @@ createPage <- function(title, subtitle, context) {
   )
 }
 
+#' Create Species Dropdown
 #' @description dropdownBasedOnRadioBtn will create a searchable dropdown for selecting species byVernacular name and by scientific name based on radio button for Search species by Vernacuar Name or Scientific Name
 #' @param radioBtn_search_byName andradioBtn_search_byNameID are Search by Name radio button input value and specific choice like Vernacular Name or Scientific Name.
 #'  id1, id2, label1, label2, choices1,choices2  used to give input ids, labels and list of all choices for selecting species byVernacular name and by scientific name
@@ -266,7 +269,7 @@ dropdownBasedOnRadioBtn <- function(radioBtn_search_byName, radioBtn_search_byNa
 
 # Server Helper functions -------------------------------------------------
 
-
+#' Update Species Dropdown
 #' @description updateSpecies will update a searchbox and dropdown for selecting species byVernacular name and by scientific name in the server
 #' @param session, id, choices used to give input session, input id, and list of all choices for selecting species byVernacular name and by scientific name
 
@@ -276,6 +279,7 @@ updateSpecies <- function(session, id, choices) {
     inputId = id, choices = choices, server = TRUE
   )
 }
+#' Update Dropdown Based on Radio Button
 #' @description  updateDropdownBasedOnRadioBtnValues will updates input values of searchable dropdowns selecting species byVernacular name and by scientific name based on radio button for Search species by Vernacuar Name or Scientific Name
 #' @param radioBtn_search_byName and radioBtn_search_byNameID_ver,radioBtn_search_byNameID_sci are Search by Name radio button input value and specific choice like Vernacular Name or Scientific Name.
 #'  id_ver_name, id_sci_name are input values of Search Species by Vernacular Name or Scientific Name

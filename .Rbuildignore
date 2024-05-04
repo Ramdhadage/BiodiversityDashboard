@@ -3,3 +3,4 @@
 ^BiodiversityDashboard\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
+^app_cache

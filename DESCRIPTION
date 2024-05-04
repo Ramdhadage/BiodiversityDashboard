@@ -1,5 +1,5 @@
 Package: BiodiversityDashboard
-Title: Shiny dashboard that visualize observed species on map for Biodiversity data.
+Title: Shiny dashboard that visualize observed species on map for Biodiversity data
 Version: 0.0.1
 Authors@R: 
     person(given = "Ramnath",
@@ -8,16 +8,14 @@ Authors@R:
     role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: Shiny dashboard that visualizes observed species on the map and how often it is observed.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.3.1
 Imports: 
     bs4Dash,
     bslib,
     data.table,
-    devtools,
     dplyr,
     echarts4r,
     fresh,
@@ -26,7 +24,6 @@ Imports:
     magrittr,
     shiny,
     shinycssloaders,
-    shinytest,
     shinyWidgets,
     styler,
     thematic,

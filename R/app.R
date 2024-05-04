@@ -1,15 +1,15 @@
-#' The application User-Interface
-#'
-#' @import shiny
-# Suppressing unused warnings
-options(warn=-1)
 
-options(shiny.autoload.r=FALSE)
+# Suppressing unused warnings
+# options(warn=-1)
+
+# options(shiny.autoload.r=FALSE)
 
 # Load all files and folders from Biodiversity Dashboard to run the app
 
-pkgload::load_all()
-
+# pkgload::load_all()
+#' The application User-Interface
+#'
+#' @import shiny
 app_ui <- function(request) {
   tagList(
     tags$script(
@@ -47,8 +47,17 @@ app_server <- function(input, output, session) {
                                        flg_darkMode = reactive(input$dark_mode))
   })
 }
-shiny::shinyApp(
-  ui = app_ui,
-  server = app_server,
-)
 
+#' Run Biodiversity Dashboard
+#'
+#' @importFrom shiny shinyApp
+#'
+#' @export
+
+run_bd_app <- function(...) {
+  shinyApp(
+    ui = app_ui,
+    server = app_server
+    )
+
+}
