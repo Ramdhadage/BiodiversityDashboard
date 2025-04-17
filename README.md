@@ -28,6 +28,12 @@ Table of Contents
 The goal of Biodiversity Dashboard is to build a Shiny app that
 visualizes observed species on the map.
 
+## Live Demo
+
+Try Biodiversity Dashboard package directly in your browser:
+
+<iframe src="https://ramdhadage.github.io/BiodiversityDashboard/" width="100%" height="600" frameborder="0"></iframe>
+
 ## Installation
 
 You can install the development version of blockr from
