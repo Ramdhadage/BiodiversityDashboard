@@ -1,3 +1,6 @@
+---
+output: html_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -32,11 +35,16 @@ visualizes observed species on the map.
 
 Try Biodiversity Dashboard package directly in your browser:
 
-<iframe src="https://ramdhadage.github.io/BiodiversityDashboard/" width="100%" height="600" frameborder="0"></iframe>
+<iframe src="https://ramdhadage.github.io/BiodiversityDashboard/" 
+  width="100%" height="800px" frameborder="0" 
+  style="border:none; overflow:hidden;" 
+  allowfullscreen></iframe>
+[![Try it now!](https://img.shields.io/badge/Try%20it-online-blue)](https://ramdhadage.github.io/BiodiversityDashboard/)
+
 
 ## Installation
 
-You can install the development version of blockr from
+You can install the development version of BiodiversityDashboard from
 [GitHub](https://github.com/) with:
 
 ``` r
