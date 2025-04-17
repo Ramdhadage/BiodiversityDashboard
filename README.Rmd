@@ -43,12 +43,18 @@ The goal of Biodiversity Dashboard is to build a Shiny app that visualizes obser
 
 ## Installation
 
-You can install the development version of blockr from [GitHub](https://github.com/) with:
+You can install the development version of BiodiversityDashboard from
+from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("Ramdhadage/BiodiversityDashboard")
 ```
+
+## Live Demo
+
+Try Biodiversity Dashboard package directly in your browser:
+[![Try it now!](https://img.shields.io/badge/Try%20it-online-blue)](https://ramdhadage.github.io/BiodiversityDashboard/)
 
 ## Example
 

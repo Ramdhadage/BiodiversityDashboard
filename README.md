@@ -1,6 +1,3 @@
----
-output: html_document
----
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -31,26 +28,20 @@ Table of Contents
 The goal of Biodiversity Dashboard is to build a Shiny app that
 visualizes observed species on the map.
 
-## Live Demo
-
-Try Biodiversity Dashboard package directly in your browser:
-
-<iframe src="https://ramdhadage.github.io/BiodiversityDashboard/" 
-  width="100%" height="800px" frameborder="0" 
-  style="border:none; overflow:hidden;" 
-  allowfullscreen></iframe>
-[![Try it now!](https://img.shields.io/badge/Try%20it-online-blue)](https://ramdhadage.github.io/BiodiversityDashboard/)
-
-
 ## Installation
 
 You can install the development version of BiodiversityDashboard from
-[GitHub](https://github.com/) with:
+from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("Ramdhadage/BiodiversityDashboard")
 ```
+
+## Live Demo
+
+Try Biodiversity Dashboard package directly in your browser: [![Try it
+now!](https://img.shields.io/badge/Try%20it-online-blue)](https://ramdhadage.github.io/BiodiversityDashboard/)
 
 ## Example
 
