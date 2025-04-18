@@ -13,52 +13,72 @@ knitr::opts_chunk$set(
 )
 ```
 
-# BiodiversityDashboard
+# 🌿 BiodiversityDashboard
 
 <!-- badges: start -->
 
+[![Project Status: Active](https://img.shields.io/badge/Project%20Status-Active-green)](https://github.com/Ramdhadage/BiodiversityDashboard) [![R Package](https://img.shields.io/badge/R%20Package-0.1.0-blue)](https://github.com/Ramdhadage/BiodiversityDashboard) [![Try it now!](https://img.shields.io/badge/Try%20it-online-blue)](https://ramdhadage.github.io/BiodiversityDashboard/)
+
 <!-- badges: end -->
 
-<!-- TABLE OF CONTENTS -->
+```{r , echo=FALSE, fig.align = 'center', out.width='100%'}
+knitr::include_graphics("vignettes/figures/Biodiversity_Dashboard1.png")
+knitr::include_graphics("vignettes/figures/Biodiversity_Dashboard2.png")
+```
 
-<details>
+> An interactive Shiny application that visualizes biodiversity data on maps and timelines, helping researchers and enthusiasts explore species distributions and observation patterns.
 
-<summary>Table of Contents</summary>
+## 📋 Table of Contents
 
-<ol>
+<details open>
 
-<li><a href="#about-the-project">About The Project</a></li>
+<summary>Click to expand/collapse</summary>
 
-<li><a href="#installation">Installation</a></li>
-
-<li><a href="#roadmap">Roadmap</a></li>
-
-</ol>
+-   [📖 About The Project](#-about-the-project)
+    -   [✨ Features](#-features)
+    -   [🚀 Installation](#-installation)
+    -   [🖥️ Live Demo](#-live-demo)
+    -   [📊 Example](#-example)
+    -   [🗺️ Roadmap](#-roadmap)
+    -   [📚 Documentation](#-documentation)
+    -   [🤝 Contributing](#-contributing)
+    -   [📜 License](#-license)
 
 </details>
 
-## About The Project
+## 📖 About The Project
 
-The goal of Biodiversity Dashboard is to build a Shiny app that visualizes observed species on the map.
+The Biodiversity Dashboard is a sophisticated Shiny application designed to visualize and explore biodiversity data. It allows users to search for species by scientific or vernacular names and displays observation data on interactive maps and timeline visualizations.
 
-## Installation
+## ✨ Features
 
-You can install the development version of BiodiversityDashboard from
-from [GitHub](https://github.com/) with:
+-   **Interactive Species Search**: Find species using scientific or vernacular names
+-   **Dynamic Map Visualization**: View species observations geographically
+-   **Temporal Analysis**: Explore when species were observed through timeline visualizations
+-   **Fast Performance**: Optimized for quick initialization and responsive interactions
+-   **Modern UI**: Styled with CSS/Sass for an enhanced user experience
+
+## 🚀 Installation
+
+You can install the development version of BiodiversityDashboard from [GitHub](https://github.com/Ramdhadage/BiodiversityDashboard):
 
 ``` r
-# install.packages("remotes")
+# Install remotes if you haven't already
+if (!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages("remotes")
+}
+
+# Install BiodiversityDashboard
 remotes::install_github("Ramdhadage/BiodiversityDashboard")
 ```
 
-## Live Demo
+## 🖥 Live Demo
 
-Try Biodiversity Dashboard package directly in your browser:
-[![Try it now!](https://img.shields.io/badge/Try%20it-online-blue)](https://ramdhadage.github.io/BiodiversityDashboard/)
+Try the BiodiversityDashboard directly in your browser: [click on me](https://ramdhadage.github.io/BiodiversityDashboard/)
 
-## Example
+## 📊 Example
 
-Run the dashboard
+Launch the dashboard with a single function call:
 
 ``` r
  BiodiversityDashboard::run_bd_app()
@@ -66,33 +86,100 @@ Run the dashboard
 
 <!-- ROADMAP -->
 
-## Roadmap
+## 🗺️ Roadmap
 
--   [x] Users should be able to search for species using their scientificName and vernacularName. The application should display its observations on the map after the search box returns matching names. A radio button for species Name by Vernacular Name or Scientific Name has been added. When you select Scientific Name from the menu, the Vernacular Name is rendered and vice versa. Users should be able to search for species using their scientificName and vernacularName. The application should display its observations on the map after the search box returns matching names. A radio button for species Name by Vernacular Name or Scientific Name has been added. When you select Scientific Name from the menu, the Vernacular Name is presented and vice versa.
+### Completed Features ✅
 
--   [x] Default view when no species is selected yet should make sense to the user. It shouldn't be just an empty map and plot. Please decide what you will display.Added default values of species to map.
+-   **Species Search Functionality:**\
 
--   [x] Users should be able to view a visualization of a timeline when selected species were observed. Added monthly occurrence plot.
+    Users can search for species using scientific or vernacular names. The application displays observations on the map after search returns matching names.
 
--   [x] Deploy the app to shinyapps.io. Deployed on you can see it [here](https://ti5syn-ramdhadage.shinyapps.io/BiodiversityDashboard/)
+-   **Informative Default View**\
+    Default view presents meaningful data rather than an empty map and plot.
 
--   [x] Decompose independent functionalities into shinyModules. Added shiny modules mod_loadData, mod_timelineVisualization and mod_viewMap
+-   **Timeline Visualization**\
+    Visualization of temporal patterns when selected species were observed.
 
--   [x] Add unit tests for the most important functions and cover edge cases. Added unit tests for important functions as well as server and ui components.
+-   **Public Deployment**\
+    Available on [github.io](https://ramdhadage.github.io/BiodiversityDashboard/)
 
--   [x] Use CSS and Sass to style your dashboard. Make the dashboard look better than standard Shiny. Used [fresh](https://dreamrs.github.io/fresh/index.html) which use sass.
+-   **Modular Architecture**\
+    Implemented Shiny modules: `mod_loadData`, `mod_timelineVisualization`, and `mod_viewMap`.
 
--   [x] Make sure your app initializes fast and the search field is fast. Use as many optimization techniques as possible.Used shiny cashing for application performance optimization. In addition, [memoise](https://github.com/r-lib/memoise) was utilised to memorise R functions. To read data quickly, I used the fread function from the data.table package. Data in sysdata.rda was updated to be stored as internal data so that app will launched quickly in the package. Instead of choose select-input, server-side-selectize input was used. For visualization , Javascript libraries such as Echarts4r, and leaflet used.  The library shinyWidgets used for input widgets.
+-   **Test Coverage**\
+    Added unit tests for critical functions and edge cases.
 
--   [x] Use JavaScript to create non-trivial visualization. Javascript was used to display popups and labels on the map, as well as the monthly occurrence plot.
+-   **Enhanced Styling**\
+    Used [fresh](https://dreamrs.github.io/fresh/index.html) with Sass for improved aesthetics.
 
--   [x] Make a separate module for dynamic ui for species selection based on scientific names and vernacular names.Mod loadData.R was reorganised, given the new name mod01 loadinputs.R.
+-   **Performance Optimization**
 
--   [x] Convert selected species modification code to function from Load Data module.and functions for dropdownBasedOnRadioBtn and updatedropdownBasedOnRadioBtn were added. I've numbered the modules as well as the modules in the workflow order. For dark mode, I also changed appearance plots.
+    -   Shiny caching for application performance
 
--   [ ] Add images in popups, label and spinners using javascript.
+    -   [memoise](https://github.com/r-lib/memoise) for function memoization
 
--   [ ] Add more test cases to unit test few more functions.
+    -   Fast data loading with `data.table::fread()`
+
+    -   Internal data storage in `sysdata.rda`
+
+    -   Server-side-selectize inputs
+
+    -   JavaScript libraries (Echarts4r, leaflet) for visualization
+
+    -   shinyWidgets for input components
+
+-   **JavaScript Visualizations**\
+    Used JavaScript for map popups, labels, and monthly occurrence plots.
+
+-   **Dynamic UI Module**\
+    Created separate module for species selection based on name typ
+
+-   **Code Refactoring**\
+    Functions for `dropdownBasedOnRadioBtn` and `updatedropdownBasedOnRadioBtn`, numbered modules, dark mode support.
+
+### Upcoming Features 🔜
+
+- **Enhanced JavaScript Integration**  
+  Implement rich media elements in popups, interactive labels, and loading spinners through custom JavaScript for a more engaging user experience.
+
+- **Comprehensive Test Coverage**  
+  Expand unit testing to cover additional functions and edge cases, ensuring robust application behavior across all scenarios.
+
+- **CI/CD with GitHub Actions**  
+  Implement automated workflows for continuous integration and deployment, including:
+  - Automated R CMD check across multiple operating systems
+  - Code coverage reporting
+  - Automated package testing on pull requests
+  - Seamless deployment to GitHub Pages and shinyapps.io
+
+- **Modern UI with bslib**  
+  Transition from bs4Dash to bslib for a more polished interface, leveraging:
+  - Bootstrap 5 components and utilities
+  - Custom theming with Sass variables
+  - Responsive card-based layouts
+  - Improved dark mode implementation
+
+- **Comprehensive Documentation**  
+  Create and deploy extensive documentation including:
+  - Function reference with examples
+  - User guides with vignettes
+  - Developer guidelines
+  - Interactive tutorials
+  - Automated deployment to GitHub Pages using pkgdown
+-   **Expanded Testing**\
+    Add more test cases for broader function coverage.
+
+## 📚 Documentation
+
+   For more detailed information and usage examples, please refer to the [package documentation](https://github.com/Ramdhadage/BiodiversityDashboard).
+
+## 🤝 Contributing
+
+  Contributions are welcome! Please feel free to submit a Pull Request or open an Issue on our [GitHub repository](https://github.com/Ramdhadage/BiodiversityDashboard).
+
+## 📜 License
+
+  This project is licensed under the MIT License.
 
 <p align="right">
 
