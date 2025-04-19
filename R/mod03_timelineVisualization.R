@@ -52,7 +52,7 @@ mod03_timelineVisualization_server <- function(id, inputList, flg_darkMode) {
 
     barplot_m <- memoise::memoise(barplot, cache = session$cache)
     output$occ_perMonth <- echarts4r::renderEcharts4r(
-      if (bdDataFilteredBySpecies() %>% nrow() != 0) {
+      if (!is.null(bdDataFilteredBySpecies()) && bdDataFilteredBySpecies() %>% nrow() != 0) {
         # barchart for occurences per month
 
         barplot_m(

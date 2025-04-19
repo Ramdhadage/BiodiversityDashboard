@@ -41,7 +41,7 @@ mod02_viewMap_server <- function(id, inputList) {
     leafletPlot_m <- memoise::memoise(leafletPlot, cache = session$cache)
 
     output$map <- leaflet::renderLeaflet({
-      if (bdDataFilteredBySpecies() %>% nrow() != 0) {
+      if (!is.null(bdDataFilteredBySpecies()) && bdDataFilteredBySpecies() %>% nrow() != 0) {
         leafletPlot_m(bdDataFilteredBySpecies())
       }
     }) %>%
