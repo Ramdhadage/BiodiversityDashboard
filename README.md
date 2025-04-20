@@ -14,7 +14,7 @@ now!](https://img.shields.io/badge/Try%20it-online-blue)](https://ramdhadage.git
 
 <!-- badges: end -->
 
-<img src="vignettes/figures/Biodiversity_Dashboard1.png" width="100%" style="display: block; margin: auto;" /><img src="vignettes/figures/Biodiversity_Dashboard2.png" width="100%" style="display: block; margin: auto;" />
+<img src="man/figures/Biodiversity_Dashboard1.png" width="100%" style="display: block; margin: auto;" /><img src="man/figures/Biodiversity_Dashboard2.png" width="100%" style="display: block; margin: auto;" />
 
 > An interactive Shiny application that visualizes biodiversity data on
 > maps and timelines, helping researchers and enthusiasts explore

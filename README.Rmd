@@ -21,10 +21,8 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-```{r , echo=FALSE, fig.align = 'center', out.width='100%'}
-knitr::include_graphics("vignettes/figures/Biodiversity_Dashboard1.png")
-knitr::include_graphics("vignettes/figures/Biodiversity_Dashboard2.png")
-```
+<img src="man/figures/Biodiversity_Dashboard1.png" width="100%" style="display: block; margin: auto;" alt="Biodiversity Dashboard showing species distribution map and metrics" />
+<img src="man/figures/Biodiversity_Dashboard2.png" width="100%" style="display: block; margin: auto;" alt="Second view of Biodiversity Dashboard with detailed analysis charts" />
 
 > An interactive Shiny application that visualizes biodiversity data on maps and timelines, helping researchers and enthusiasts explore species distributions and observation patterns.
 

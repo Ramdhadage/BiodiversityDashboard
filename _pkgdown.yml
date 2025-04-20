@@ -1,0 +1,5 @@
+url: https://ramdhadage.github.io/BiodiversityDashboard/
+template:
+  bootstrap: 5
+destination: doc
+

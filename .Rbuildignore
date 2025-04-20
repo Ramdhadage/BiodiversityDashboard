@@ -4,3 +4,8 @@
 ^\.Rproj\.user$
 ^README\.Rmd$
 ^app_cache
+^_pkgdown\.yml$
+^doc$
+^pkgdown$
+^docs$
+^\.github$
