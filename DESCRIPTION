@@ -11,7 +11,7 @@ Description: Shiny dashboard that visualizes observed species on the map and how
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Imports: 
     bs4Dash,
     bslib,
@@ -30,8 +30,11 @@ Imports:
     tibble,
     waiter
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Depends: 
     R (>= 2.10)
-URL: https://ramdhadage.github.io/BiodiversityDashboard/
+URL: https://ramdhadage.github.io/BiodiversityDashboard/doc
+VignetteBuilder: knitr

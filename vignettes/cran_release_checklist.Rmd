@@ -1,0 +1,84 @@
+---
+title: "CRAN Release Checklist for Biodiversity Dashboard Package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{cran_release_checklist}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Here's a comprehensive checklist to help you prepare Biodiversity Dashboard package for CRAN submission:
+
+## Before Submission
+
+### Package Structure and Documentation
+
+-   [ ] Update package version in DESCRIPTION file
+-   [ ] Check that all dependencies are properly declared in DESCRIPTION (Imports, Suggests, Depends)
+-   [ ] Ensure all exported functions have proper documentation (\@export, \@examples, etc.)
+-   [ ] Update NEWS.md with changes in the new version
+-   [ ] Update README.md with current information
+-   [ ] Check that vignettes are up-to-date and build correctly
+-   [ ] Ensure LICENSE file matches license declared in DESCRIPTION
+
+### Code Quality
+
+-   [ ] Run R CMD check --as-cran locally and fix all errors, warnings, and notes
+-   [ ] Run `devtools::check()` or `rcmdcheck::rcmdcheck(args = c("--as-cran"))`
+-   [ ] Check package with R-devel if possible
+-   [ ] Run `devtools::spell_check()` to check spelling
+-   [ ] Run `goodpractice::gp()` for additional best practices
+
+### Testing
+
+-   [ ] Ensure tests cover all main functionality
+-   [ ] Run `devtools::test()` to run all tests
+-   [ ] Check test coverage with `covr::package_coverage()`
+-   [ ] Test on multiple platforms if possible (Windows, macOS, Linux)
+-   [ ] Test with different R versions if possible
+
+### CRAN Specific Checks
+
+-   [ ] Ensure package size is under 5MB (or have a good reason if larger)
+-   [ ] Ensure examples, vignettes, and tests run in under 5 seconds each
+-   [ ] Check that no code writes to the user's home directory without permission
+-   [ ] Ensure no examples/tests write to system files or directories
+-   [ ] Check that `\dontrun{}` is only used when necessary
+-   [ ] Ensure functions don't modify user options without resetting them
+
+### Final Preparations
+
+-   [ ] Build source package with `devtools::build()`
+-   [ ] Check the package against CRAN policy with `devtools::check_rhub()`
+-   [ ] Check on win-builder with `devtools::check_win_devel()`
+-   [ ] Update cran-comments.md with:
+    -   [ ] R CMD check results
+    -   [ ] Downstream dependencies check results (if applicable)
+    -   [ ] Explanation for any NOTE/WARNING that cannot be fixed
+    -   [ ] Explanation of changes if this is an update
+
+## Submission Process
+
+### Submission Steps
+
+-   [ ] Submit to CRAN using `devtools::release()` or via the web form
+-   [ ] Wait for confirmation email from CRAN
+-   [ ] Address any feedback from CRAN maintainers promptly
+
+## Post-Submission
+
+-   [ ] Once accepted, tag the release in git
+-   [ ] Create a GitHub release (if using GitHub)
+-   [ ] Announce the release (Twitter, blog, mailing lists, etc.)
+-   [ ] Update package website if using pkgdown
+
+## Additional Considerations
+
+-   [ ] Check that URLs in documentation are valid with `urlchecker::url_check()`
+-   [ ] If using compiled code, ensure it works across platforms
+-   [ ] Check if there are reverse dependencies that need testing
+-   [ ] Run `revdepcheck::revdep_check()` if you have reverse dependencies
+
+## Reference
+
+[CRAN Repository Policy](https://cran.r-project.org/web/packages/policies.html)
