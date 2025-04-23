@@ -35,5 +35,5 @@ Suggests:
 Config/testthat/edition: 3
 Depends: 
     R (>= 2.10)
-URL: https://ramdhadage.github.io/BiodiversityDashboard/doc
+URL: www.biodiversity-docs.com
 VignetteBuilder: knitr
