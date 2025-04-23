@@ -1,0 +1,9 @@
+pandoc: '3.2'
+pkgdown: 2.1.1
+pkgdown_sha: ~
+articles:
+  cran_release_checklist: cran_release_checklist.html
+last_built: 2025-04-23T19:31Z
+urls:
+  reference: https://ramdhadage.github.io/BiodiversityDashboard/doc/reference
+  article: https://ramdhadage.github.io/BiodiversityDashboard/doc/articles
