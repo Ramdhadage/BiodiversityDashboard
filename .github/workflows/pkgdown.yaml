@@ -37,8 +37,12 @@ jobs:
           needs: website
 
       - name: Build site
-        run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE, dest_dir = "doc")
+        run: pkgdown::build_site()
         shell: Rscript {0}
+
+      - name: Create CNAME file
+        run: echo "https://ramdhadage.github.io/BiodiversityDashboard/doc" > docs/CNAME
+
 
       - name: Deploy to GitHub pages 🚀
         if: github.event_name != 'pull_request'
