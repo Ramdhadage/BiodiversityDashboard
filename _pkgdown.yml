@@ -1,5 +1,5 @@
-url: https://ramdhadage.github.io/BiodiversityDashboard/doc
+url: https://ramdhadage.github.io/BiodiversityDashboard
 template:
   bootstrap: 5
-destination: doc
+destination: docs
 
