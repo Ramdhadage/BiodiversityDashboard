@@ -95,12 +95,12 @@ declared in DESCRIPTION</label></li>
 <ul class="task-list">
 <li><label><input type="checkbox">Run R CMD check –as-cran locally and
 fix all errors, warnings, and notes</label></li>
-<li><label><input type="checkbox">Run <code><a href="https://devtools.r-lib.org/reference/check.html" class="external-link">devtools::check()</a></code>
+<li><label><input type="checkbox">Run <code>devtools::check()</code>
 or <code>rcmdcheck::rcmdcheck(args = c("--as-cran"))</code></label></li>
 <li><label><input type="checkbox">Check package with R-devel if
 possible</label></li>
 <li><label><input type="checkbox">Run
-<code><a href="https://devtools.r-lib.org/reference/spell_check.html" class="external-link">devtools::spell_check()</a></code> to check spelling</label></li>
+<code>devtools::spell_check()</code> to check spelling</label></li>
 <li><label><input type="checkbox">Run <code>goodpractice::gp()</code>
 for additional best practices</label></li>
 </ul>
@@ -111,10 +111,10 @@ for additional best practices</label></li>
 <ul class="task-list">
 <li><label><input type="checkbox">Ensure tests cover all main
 functionality</label></li>
-<li><label><input type="checkbox">Run <code><a href="https://devtools.r-lib.org/reference/test.html" class="external-link">devtools::test()</a></code> to
+<li><label><input type="checkbox">Run <code>devtools::test()</code> to
 run all tests</label></li>
 <li><label><input type="checkbox">Check test coverage with
-<code><a href="http://covr.r-lib.org/reference/package_coverage.html" class="external-link">covr::package_coverage()</a></code></label></li>
+<code>covr::package_coverage()</code></label></li>
 <li><label><input type="checkbox">Test on multiple platforms if
 possible (Windows, macOS, Linux)</label></li>
 <li><label><input type="checkbox">Test with different R versions if
@@ -144,11 +144,11 @@ options without resetting them</label></li>
 </h3>
 <ul class="task-list">
 <li><label><input type="checkbox">Build source package with
-<code><a href="https://devtools.r-lib.org/reference/build.html" class="external-link">devtools::build()</a></code></label></li>
+<code>devtools::build()</code></label></li>
 <li><label><input type="checkbox">Check the package against CRAN
-policy with <code><a href="https://devtools.r-lib.org/reference/check_rhub.html" class="external-link">devtools::check_rhub()</a></code></label></li>
+policy with <code>devtools::check_rhub()</code></label></li>
 <li><label><input type="checkbox">Check on win-builder with
-<code><a href="https://devtools.r-lib.org/reference/check_win.html" class="external-link">devtools::check_win_devel()</a></code></label></li>
+<code>devtools::check_win_devel()</code></label></li>
 <li>
 <label><input type="checkbox">Update cran-comments.md
 with:</label>
@@ -173,7 +173,7 @@ update</label></li>
 </h3>
 <ul class="task-list">
 <li><label><input type="checkbox">Submit to CRAN using
-<code><a href="https://devtools.r-lib.org/reference/release.html" class="external-link">devtools::release()</a></code> or via the web form</label></li>
+<code>devtools::release()</code> or via the web form</label></li>
 <li><label><input type="checkbox">Wait for confirmation email from
 CRAN</label></li>
 <li><label><input type="checkbox">Address any feedback from CRAN
@@ -200,7 +200,7 @@ pkgdown</label></li>
 </h2>
 <ul class="task-list">
 <li><label><input type="checkbox">Check that URLs in documentation are
-valid with <code><a href="https://rdrr.io/pkg/urlchecker/man/url_check.html" class="external-link">urlchecker::url_check()</a></code></label></li>
+valid with <code>urlchecker::url_check()</code></label></li>
 <li><label><input type="checkbox">If using compiled code, ensure it
 works across platforms</label></li>
 <li><label><input type="checkbox">Check if there are reverse
