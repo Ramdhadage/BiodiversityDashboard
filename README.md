@@ -10,7 +10,7 @@ Active](https://img.shields.io/badge/Project%20Status-Active-green)](https://git
 [![R
 Package](https://img.shields.io/badge/R%20Package-0.1.0-blue)](https://github.com/Ramdhadage/BiodiversityDashboard)
 [![Try it
-now!](https://img.shields.io/badge/Try%20it-online-blue)](https://ramdhadage.github.io/BiodiversityDashboard/)
+now!](https://img.shields.io/badge/Try%20it-online-blue)](https://mlprojectca1asm.shinyapps.io/biodiversitydashboard/)
 
 <!-- badges: end -->
 
@@ -77,7 +77,7 @@ remotes::install_github("Ramdhadage/BiodiversityDashboard")
 ## 🖥 Live Demo
 
 Try the BiodiversityDashboard directly in your browser: [click on
-me](https://ramdhadage.github.io/BiodiversityDashboard/)
+me](https://mlprojectca1asm.shinyapps.io/biodiversitydashboard/)
 
 ## 📊 Example
 
