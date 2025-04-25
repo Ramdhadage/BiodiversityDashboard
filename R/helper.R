@@ -47,7 +47,7 @@ monthlyOccurence <- function(data) {
 #' Bar Plot
 #' @description barplot function will plot  a bar chart using echarts4r libary.
 #' @param data, xAxisValues, yAxisValues,xaxisLabel,yaxisLabel,title,are paramaeters required to plot bar chart. flg_darkMode is boolean variable for dark mode.
-#' @import echarts4r
+#' @import echarts4r htmlwidgets
 
 barplot <- function(data, xaxisLabel, yaxisLabel, title, flg_darkMode = FALSE) {
   barplot <- data %>%
@@ -160,10 +160,11 @@ leafletPlot <- function(data) {
       clusterOptions = markerClusterOptions()
     )
 }
-#' Unique Species
+#' Extract Unique Species Values
 #' @description DistinctChoices will Choose species from scientific name species given Vernacular Name species, distinct() select unique values and pull() convert data.frame to vector
-#' @param filteredNameID is Search Species by Vernacular Name or Scientific Name,
-#'  selectedColumnName is selected column, SearchColumnName colum from user is seaching the species.
+#' @param filteredNameID is Search Species by Vernacular Name or Scientific Name.
+#' @param selectedColumnName is selected column.
+#' @param SearchColumnName column from user is searching the species.
 
 DistinctChoices <- function(filteredNameID, searchColumnName, selectedColumnName) {
   load_bdData() %>%
@@ -199,7 +200,6 @@ freshTheme <- fresh::create_theme(
 
 #' UI function for the Biodiversity App
 #' @description This file will create helper functions required for structure building
-#' @importFrom bs4Dash insertTab actionButton navbarMenu tabsetPanel column dashboardBrand
 #' @importFrom shinyWidgets progressBar
 #' @import shiny waiter fresh
 #' @param title, subtitle, context for header , exra informaton and to set context respectivly.
@@ -285,6 +285,7 @@ updateSpecies <- function(session, id, choices) {
 #'  id_ver_name, id_sci_name are input values of Search Species by Vernacular Name or Scientific Name
 #'  scientificName_str, vernacularName_str constant string "scientificName" and "vernacularName"
 #' id_selected_sci_name, id_selected_ver_name,session are input values of Matching Scientific Name and Matching Vernacular Name and session of shiny app.
+#' @import memoise htmlwidgets
 
 updateDropdownBasedOnRadioBtnValues <- function(radioBtn_search_byName,
                                                 radioBtn_search_byNameID_ver,

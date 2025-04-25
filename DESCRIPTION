@@ -14,18 +14,16 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Imports: 
     bs4Dash,
-    bslib,
-    data.table,
     dplyr,
     echarts4r,
     fresh,
+    htmlwidgets,
     leaflet,
-    lubridate,
     magrittr,
+    memoise,
     shiny,
     shinycssloaders,
     shinyWidgets,
-    styler,
     tibble,
     waiter
 Suggests: 

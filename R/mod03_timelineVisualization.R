@@ -22,7 +22,7 @@ mod03_timelineVisualization_ui <- function(id) {
 }
 
 #' mod_timelineVisualization Server Functions
-#'
+#' @import memoise htmlwidgets
 #' @noRd
 mod03_timelineVisualization_server <- function(id, inputList, flg_darkMode) {
   moduleServer(id, function(input, output, session) {

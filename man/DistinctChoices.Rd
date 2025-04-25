@@ -2,13 +2,16 @@
 % Please edit documentation in R/helper.R
 \name{DistinctChoices}
 \alias{DistinctChoices}
-\title{Unique Species}
+\title{Extract Unique Species Values}
 \usage{
 DistinctChoices(filteredNameID, searchColumnName, selectedColumnName)
 }
 \arguments{
-\item{filteredNameID}{is Search Species by Vernacular Name or Scientific Name,
-selectedColumnName is selected column, SearchColumnName colum from user is seaching the species.}
+\item{filteredNameID}{is Search Species by Vernacular Name or Scientific Name.}
+
+\item{selectedColumnName}{is selected column.}
+
+\item{SearchColumnName}{column from user is searching the species.}
 }
 \description{
 DistinctChoices will Choose species from scientific name species given Vernacular Name species, distinct() select unique values and pull() convert data.frame to vector

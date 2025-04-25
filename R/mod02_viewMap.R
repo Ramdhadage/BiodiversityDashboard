@@ -20,7 +20,7 @@ mod02_viewMap_ui <- function(id) {
 }
 
 #' viewMap Server Functions
-
+#' @import memoise htmlwidgets
 mod02_viewMap_server <- function(id, inputList) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
