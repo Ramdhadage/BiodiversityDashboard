@@ -24,6 +24,7 @@ Imports:
     shiny,
     shinycssloaders,
     shinyWidgets,
+    htmltools,
     tibble,
     waiter
 Suggests: 

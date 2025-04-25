@@ -7,15 +7,35 @@
 # Load all files and folders from Biodiversity Dashboard to run the app
 
 # pkgload::load_all()
-#' The application User-Interface
+#' Create the Shiny application user interface
+#'
+#' This function defines the complete user interface (UI) for the biodiversity dashboard application.
+#' It includes setup for the page layout, title, and any external dependencies.
+#'
+#' @param request The request object, typically passed from the Shiny framework when
+#'   the application is initialized. This enables bookmarking and other server-side
+#'   features that depend on the request state.
+#'
+#' @return A tagList containing the complete UI definition for the Shiny application.
+#'
+#' @details
+#' The UI includes:
+#' - External JavaScript for timing operations from the shiny.tictoc package
+#' - The main application page structure defined by the createPage function
+#'
+#' @examples
+#' # This function is typically called by shinyApp:
+#' # shinyApp(ui = app_ui, server = app_server)
 #'
 #' @import shiny
+#' @importFrom htmltools tagList tags
 app_ui <- function(request) {
   tagList(
+    # Include external JavaScript for timing operations
     tags$script(
       src = "https://cdn.jsdelivr.net/gh/Appsilon/shiny.tictoc@v0.2.0/shiny-tic-toc.min.js"
     ),
-    # build the ui
+    # Build the main UI page
     createPage(
       title = "Biodiversity Dashboard",
       subtitle = "",

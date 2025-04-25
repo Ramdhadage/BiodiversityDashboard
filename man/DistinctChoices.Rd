@@ -2,17 +2,21 @@
 % Please edit documentation in R/helper.R
 \name{DistinctChoices}
 \alias{DistinctChoices}
-\title{Extract Unique Species Values}
+\title{Extract unique values from a column based on a filter condition}
 \usage{
 DistinctChoices(filteredNameID, searchColumnName, selectedColumnName)
 }
 \arguments{
-\item{filteredNameID}{is Search Species by Vernacular Name or Scientific Name.}
+\item{filteredNameID}{Character. The value to filter by in the search column.}
 
-\item{selectedColumnName}{is selected column.}
+\item{searchColumnName}{Character. The name of the column to search for the filteredNameID value.}
 
-\item{SearchColumnName}{column from user is searching the species.}
+\item{selectedColumnName}{Character. The name of the column from which to extract unique values.}
+}
+\value{
+A character vector of unique values from the selected column.
 }
 \description{
-DistinctChoices will Choose species from scientific name species given Vernacular Name species, distinct() select unique values and pull() convert data.frame to vector
+This function filters the biodiversity data based on a search value in a specified column,
+then extracts unique values from another selected column.
 }

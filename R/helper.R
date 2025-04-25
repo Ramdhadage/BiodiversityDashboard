@@ -1,25 +1,44 @@
 # Business Logic Functions ------------------------------------------------
-#' User Extracted Data
-#' @description  SelectedbdData is subset of biodiversity data corresponding to search by user search for species by their vernacularName and scientificName.
-#' @param searchedVerncularNameID and searchedScientifNameID are input ids of Search Species by Vernacular Name and Search Species by scientific Name
-
+#' Filter biodiversity data based on search criteria
+#'
+#' This function subsets the biodiversity data based on user search criteria
+#' for species by their vernacular name and scientific name. The function handles
+#' two search modes determined by the radio button selection.
+#'
+#' @param radioBtn_search_byName Character. The current value of the search mode radio button.
+#' @param radioBtn_search_byNameID Character. The ID value that indicates search by vernacular name mode.
+#' @param searchByVerOrSciName Character. The primary search term entered by the user.
+#' @param selectedByVerOrSciName Character. The secondary selection made by the user.
+#'
+#' @return A data frame containing the filtered biodiversity data that matches both
+#'   the vernacular name and scientific name criteria.
+#'
+#' @details
+#' The function behaves differently based on the search mode:
+#' - If radioBtn_search_byName equals radioBtn_search_byNameID, it filters by vernacular name
+#'   first (searchByVerOrSciName) and then by scientific name (selectedByVerOrSciName).
+#' - Otherwise, it filters by scientific name first (searchByVerOrSciName) and then
+#'   by vernacular name (selectedByVerOrSciName).
+#' @importFrom dplyr filter
 SelectedbdData <- function(radioBtn_search_byName, radioBtn_search_byNameID,
                            searchByVerOrSciName,
                            selectedByVerOrSciName) {
   tryCatch(
     expr = {
       if (radioBtn_search_byName == radioBtn_search_byNameID) {
+        # Search by vernacular name first, then scientific name
         load_bdData() %>%
           dplyr::filter(vernacularName == searchByVerOrSciName &
-            scientificName == selectedByVerOrSciName)
+                          scientificName == selectedByVerOrSciName)
       } else {
+        # Search by scientific name first, then vernacular name
         load_bdData() %>%
           dplyr::filter(vernacularName == selectedByVerOrSciName &
-            scientificName == searchByVerOrSciName) # in this section we are selecting species by scientific name.
+                          scientificName == searchByVerOrSciName)
       }
     },
     error = function(e) {
-      message("invalid parameter specified")
+      message("Invalid parameter specified")
     }
   )
 }
@@ -160,12 +179,16 @@ leafletPlot <- function(data) {
       clusterOptions = markerClusterOptions()
     )
 }
-#' Extract Unique Species Values
-#' @description DistinctChoices will Choose species from scientific name species given Vernacular Name species, distinct() select unique values and pull() convert data.frame to vector
-#' @param filteredNameID is Search Species by Vernacular Name or Scientific Name.
-#' @param selectedColumnName is selected column.
-#' @param SearchColumnName column from user is searching the species.
-
+#' Extract unique values from a column based on a filter condition
+#'
+#' This function filters the biodiversity data based on a search value in a specified column,
+#' then extracts unique values from another selected column.
+#'
+#' @param filteredNameID Character. The value to filter by in the search column.
+#' @param searchColumnName Character. The name of the column to search for the filteredNameID value.
+#' @param selectedColumnName Character. The name of the column from which to extract unique values.
+#' @return A character vector of unique values from the selected column.
+#' @importFrom dplyr filter select distinct pull
 DistinctChoices <- function(filteredNameID, searchColumnName, selectedColumnName) {
   load_bdData() %>%
     dplyr::filter(.data[[searchColumnName]] == filteredNameID) %>%
@@ -173,6 +196,7 @@ DistinctChoices <- function(filteredNameID, searchColumnName, selectedColumnName
     dplyr::distinct() %>%
     dplyr::pull()
 }
+
 #  UI helper functions -----------------------------------------------------------
 # Added customize theme for app styling
 

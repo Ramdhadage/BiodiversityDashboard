@@ -2,10 +2,31 @@
 % Please edit documentation in R/run_app.R
 \name{app_ui}
 \alias{app_ui}
-\title{The application User-Interface}
+\title{Create the Shiny application user interface}
 \usage{
 app_ui(request)
 }
+\arguments{
+\item{request}{The request object, typically passed from the Shiny framework when
+the application is initialized. This enables bookmarking and other server-side
+features that depend on the request state.}
+}
+\value{
+A tagList containing the complete UI definition for the Shiny application.
+}
 \description{
-The application User-Interface
+This function defines the complete user interface (UI) for the biodiversity dashboard application.
+It includes setup for the page layout, title, and any external dependencies.
+}
+\details{
+The UI includes:
+\itemize{
+\item External JavaScript for timing operations from the shiny.tictoc package
+\item The main application page structure defined by the createPage function
+}
+}
+\examples{
+# This function is typically called by shinyApp:
+# shinyApp(ui = app_ui, server = app_server)
+
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/helper.R
 \name{SelectedbdData}
 \alias{SelectedbdData}
-\title{User Extracted Data}
+\title{Filter biodiversity data based on search criteria}
 \usage{
 SelectedbdData(
   radioBtn_search_byName,
@@ -12,8 +12,29 @@ SelectedbdData(
 )
 }
 \arguments{
-\item{searchedVerncularNameID}{and searchedScientifNameID are input ids of Search Species by Vernacular Name and Search Species by scientific Name}
+\item{radioBtn_search_byName}{Character. The current value of the search mode radio button.}
+
+\item{radioBtn_search_byNameID}{Character. The ID value that indicates search by vernacular name mode.}
+
+\item{searchByVerOrSciName}{Character. The primary search term entered by the user.}
+
+\item{selectedByVerOrSciName}{Character. The secondary selection made by the user.}
+}
+\value{
+A data frame containing the filtered biodiversity data that matches both
+the vernacular name and scientific name criteria.
 }
 \description{
-SelectedbdData is subset of biodiversity data corresponding to search by user search for species by their vernacularName and scientificName.
+This function subsets the biodiversity data based on user search criteria
+for species by their vernacular name and scientific name. The function handles
+two search modes determined by the radio button selection.
+}
+\details{
+The function behaves differently based on the search mode:
+\itemize{
+\item If radioBtn_search_byName equals radioBtn_search_byNameID, it filters by vernacular name
+first (searchByVerOrSciName) and then by scientific name (selectedByVerOrSciName).
+\item Otherwise, it filters by scientific name first (searchByVerOrSciName) and then
+by vernacular name (selectedByVerOrSciName).
+}
 }
