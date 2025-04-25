@@ -99,7 +99,7 @@ Launch the dashboard with a single function call:
     Visualization of temporal patterns when selected species were observed.
 
 -   **Public Deployment**\
-    Available on [github.io](https://ramdhadage.github.io/BiodiversityDashboard/)
+    Available on [shinyapps.io](https://ramdhadage.github.io/BiodiversityDashboard/)
 
 -   **Modular Architecture**\
     Implemented Shiny modules: `mod_loadData`, `mod_timelineVisualization`, and `mod_viewMap`.
@@ -130,7 +130,7 @@ Launch the dashboard with a single function call:
     Used JavaScript for map popups, labels, and monthly occurrence plots.
 
 -   **Dynamic UI Module**\
-    Created separate module for species selection based on name typ
+    Created separate module for species selection based on name type
 
 -   **Code Refactoring**\
     Functions for `dropdownBasedOnRadioBtn` and `updatedropdownBasedOnRadioBtn`, numbered modules, dark mode support.

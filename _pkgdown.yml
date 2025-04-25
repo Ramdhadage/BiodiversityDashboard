@@ -2,4 +2,16 @@ url: https://ramdhadage.github.io/BiodiversityDashboard
 template:
   bootstrap: 5
 destination: docs
-
+navbar:
+  structure:
+    left: [intro, reference, articles, tutorials, news, reports]
+    right: [search, github]
+  components:
+    reports:
+      text: Reports
+      menu:
+        - text: Coverage report
+          href: coverage-report/
+    github:
+      icon: fa-github
+      href: https://github.com/Ramdhadage/BiodiversityDashboard
