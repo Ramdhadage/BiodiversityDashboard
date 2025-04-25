@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   cran_release_checklist: cran_release_checklist.html
-last_built: 2025-04-25T14:19Z
+last_built: 2025-04-25T14:37Z
 urls:
   reference: https://ramdhadage.github.io/BiodiversityDashboard/reference
   article: https://ramdhadage.github.io/BiodiversityDashboard/articles
