@@ -55,7 +55,7 @@ monthlyOccurence <- function(data) {
         select(.data$event_month) %>%
         count() %>%
         ungroup() %>%
-        arrange(factor(.data$event_month, levels = .data$month.name))
+        arrange(factor(.data$event_month, levels = month.name))
     },
     error = function(e) {
       message("please enter non-null data")
