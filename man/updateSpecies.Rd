@@ -7,7 +7,14 @@
 updateSpecies(session, id, choices)
 }
 \arguments{
-\item{session, }{id, choices used to give input session, input id, and list of all choices for selecting species byVernacular name and by scientific name}
+\item{session}{The Shiny session object}
+
+\item{id}{The input ID of the selectize input to update}
+
+\item{choices}{A character vector of available species choices to display in the dropdown}
+}
+\value{
+No return value; called for side effects
 }
 \description{
 updateSpecies will update a searchbox and dropdown for selecting species byVernacular name and by scientific name in the server

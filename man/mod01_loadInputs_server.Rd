@@ -2,10 +2,20 @@
 % Please edit documentation in R/mod01_loadInputs.R
 \name{mod01_loadInputs_server}
 \alias{mod01_loadInputs_server}
-\title{dynamicUI Server Functions}
+\title{Load Inputs Server Function}
 \usage{
 mod01_loadInputs_server(id, inputList)
 }
+\arguments{
+\item{id}{A character string matching the ID used in the UI function}
+
+\item{inputList}{A reactive list that will be updated with user selections}
+}
+\value{
+None (called for side effects)
+}
 \description{
-dynamicUI Server Functions
+Server logic for the loadInputs module. Creates dynamic dropdowns based on user
+selection of search method (vernacular or scientific name) and updates the parent
+module's input list accordingly.
 }

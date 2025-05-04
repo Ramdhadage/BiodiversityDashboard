@@ -7,9 +7,9 @@
 load_bdData <- function() {
   bdData <- bdData %>%
     dplyr::select(
-      scientificName, vernacularName, species,
-      decimalLatitude, decimalLongitude, coordinateUncertaintyInMeters, locality, eventDate, occurrenceStatus, basisOfRecord
+      .data$scientificName, .data$vernacularName, .data$species,
+      .data$decimalLatitude, .data$decimalLongitude, .data$coordinateUncertaintyInMeters, .data$locality, .data$eventDate, .data$occurrenceStatus, .data$basisOfRecord
     ) %>%
-    dplyr::mutate(vernacularName = replace(vernacularName, vernacularName == "", "Not Available"))
+    dplyr::mutate(vernacularName = replace(.data$vernacularName, .data$vernacularName == "", "Not Available"))
   return(bdData)
 }

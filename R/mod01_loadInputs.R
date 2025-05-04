@@ -1,8 +1,13 @@
-#' loadInputs UI Function
+#' Load Inputs UI Function
 #'
-#' @description mod01_loadInputs is first module which creates radio button for species selection based on scientific names and vernacular names, then based on user choice create dynamic searchable dropbox for species scienific and vernacular name.
+#' @description
+#' This module creates input controls for species selection. It displays a radio button
+#' for choosing between scientific names and vernacular names, then based on the selection
+#' creates a dynamic searchable dropdown for the corresponding species names.
 #'
-#' @param id,input,output,session Internal parameters for {shiny}.
+#' @param id A character string used to identify the namespace for the module
+#'
+#' @return A Shiny UI element
 #'
 #' @importFrom shiny NS tagList
 mod01_loadInputs_ui <- function(id) {
@@ -32,7 +37,17 @@ mod01_loadInputs_ui <- function(id) {
   )
 }
 
-#' dynamicUI Server Functions
+#' Load Inputs Server Function
+#'
+#' @description
+#' Server logic for the loadInputs module. Creates dynamic dropdowns based on user
+#' selection of search method (vernacular or scientific name) and updates the parent
+#' module's input list accordingly.
+#'
+#' @param id A character string matching the ID used in the UI function
+#' @param inputList A reactive list that will be updated with user selections
+#'
+#' @return None (called for side effects)
 #'
 #' @import shiny
 mod01_loadInputs_server <- function(id, inputList) {

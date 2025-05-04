@@ -2,7 +2,7 @@
 % Please edit documentation in R/helper.R
 \name{dropdownBasedOnRadioBtn}
 \alias{dropdownBasedOnRadioBtn}
-\title{Create Species Dropdown}
+\title{Create Species Dropdown Based on Radio Button Selection}
 \usage{
 dropdownBasedOnRadioBtn(
   radioBtn_search_byName,
@@ -16,9 +16,26 @@ dropdownBasedOnRadioBtn(
 )
 }
 \arguments{
-\item{radioBtn_search_byName}{andradioBtn_search_byNameID are Search by Name radio button input value and specific choice like Vernacular Name or Scientific Name.
-id1, id2, label1, label2, choices1,choices2  used to give input ids, labels and list of all choices for selecting species byVernacular name and by scientific name}
+\item{radioBtn_search_byName}{The current value of the radio button input}
+
+\item{radioBtn_search_byNameID}{The specific choice value to check against (e.g., "Vernacular" or "Scientific")}
+
+\item{id1}{Input ID for the first dropdown option (typically vernacular names)}
+
+\item{label1}{Label text for the first dropdown option}
+
+\item{choices1}{List of choices for the first dropdown option}
+
+\item{id2}{Input ID for the second dropdown option (typically scientific names)}
+
+\item{label2}{Label text for the second dropdown option}
+
+\item{choices2}{List of choices for the second dropdown option}
+}
+\value{
+A shiny selectizeInput UI element with the appropriate options based on radio button selection
 }
 \description{
-dropdownBasedOnRadioBtn will create a searchable dropdown for selecting species byVernacular name and by scientific name based on radio button for Search species by Vernacuar Name or Scientific Name
+Creates a searchable dropdown for species selection that changes based on the
+radio button selection. Can display either vernacular names or scientific names.
 }

@@ -2,13 +2,18 @@
 % Please edit documentation in R/mod01_loadInputs.R
 \name{mod01_loadInputs_ui}
 \alias{mod01_loadInputs_ui}
-\title{loadInputs UI Function}
+\title{Load Inputs UI Function}
 \usage{
 mod01_loadInputs_ui(id)
 }
 \arguments{
-\item{id, input, output, session}{Internal parameters for {shiny}.}
+\item{id}{A character string used to identify the namespace for the module}
+}
+\value{
+A Shiny UI element
 }
 \description{
-mod01_loadInputs is first module which creates radio button for species selection based on scientific names and vernacular names, then based on user choice create dynamic searchable dropbox for species scienific and vernacular name.
+This module creates input controls for species selection. It displays a radio button
+for choosing between scientific names and vernacular names, then based on the selection
+creates a dynamic searchable dropdown for the corresponding species names.
 }

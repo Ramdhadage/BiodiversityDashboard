@@ -7,8 +7,15 @@
 createPage(title, subtitle, context)
 }
 \arguments{
-\item{title, }{subtitle, context for header , exra informaton and to set context respectivly.}
+\item{title}{Character string for the dashboard title}
+
+\item{subtitle}{Character string for the dashboard subtitle}
+
+\item{context}{Character string to set the app context}
+}
+\value{
+A bs4Dash dashboard page
 }
 \description{
-This file will create helper functions required for structure building
+Creates the main dashboard page structure for the Biodiversity App
 }

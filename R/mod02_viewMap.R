@@ -1,10 +1,13 @@
-#' viewMap UI Function
-#' @description  This module will show searched species on map and show its occurrences
-#' @param input,output,session Internal parameters for {shiny}.
-#'     DO NOT REMOVE.
+#' View Map UI Function
+#'
+#' @description This module will show searched species on map and display its occurrences
+#'
+#' @param id A character string that defines the namespace for the module
+#'
 #' @import leaflet shinycssloaders
+#'
+#' @return A UI definition that can be passed to the [shinyUI()] function
 #' @noRd
-
 mod02_viewMap_ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -19,8 +22,23 @@ mod02_viewMap_ui <- function(id) {
   )
 }
 
-#' viewMap Server Functions
-#' @import memoise htmlwidgets
+#' View Map Server Function
+#'
+#' @description Server logic for the view map module
+#'
+#' @param id A character string that defines the namespace for the module
+#' @param inputList A reactive list containing user inputs:
+#'   \itemize{
+#'     \item{searchByVerOrSciName}{Search term for vernacular or scientific name}
+#'     \item{selectedBySciOrVerName}{Selected species from search results}
+#'     \item{radioBtn_searchByName}{Radio button selection for search type}
+#'   }
+#'
+#' @import memoise htmlwidgets leaflet shiny
+#' @importFrom shiny moduleServer reactive req bindCache
+#'
+#' @return A [moduleServer()] function
+#' @noRd
 mod02_viewMap_server <- function(id, inputList) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns

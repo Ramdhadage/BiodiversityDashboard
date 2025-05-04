@@ -6,6 +6,17 @@
 \usage{
 run_bd_app(...)
 }
+\arguments{
+\item{...}{Additional arguments to be passed to \code{shinyApp}}
+}
+\value{
+A Shiny application object
+}
 \description{
-Run Biodiversity Dashboard
+This function launches the Biodiversity Dashboard Shiny application.
+}
+\examples{
+\dontrun{
+run_bd_app()
+}
 }

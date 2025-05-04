@@ -28,13 +28,13 @@ SelectedbdData <- function(radioBtn_search_byName, radioBtn_search_byNameID,
       if (radioBtn_search_byName == radioBtn_search_byNameID) {
         # Search by vernacular name first, then scientific name
         load_bdData() %>%
-          dplyr::filter(vernacularName == searchByVerOrSciName &
-                          scientificName == selectedByVerOrSciName)
+          dplyr::filter(.data$vernacularName == searchByVerOrSciName &
+                          .data$scientificName == selectedByVerOrSciName)
       } else {
         # Search by scientific name first, then vernacular name
         load_bdData() %>%
-          dplyr::filter(vernacularName == selectedByVerOrSciName &
-                          scientificName == searchByVerOrSciName)
+          dplyr::filter(.data$vernacularName == selectedByVerOrSciName &
+                          .data$scientificName == searchByVerOrSciName)
       }
     },
     error = function(e) {
@@ -50,12 +50,12 @@ monthlyOccurence <- function(data) {
   tryCatch(
     expr = {
       data %>%
-        dplyr::mutate(event_month = months(base::as.Date(eventDate))) %>%
-        group_by(event_month) %>%
-        select(event_month) %>%
+        dplyr::mutate(event_month = months(base::as.Date(.data$eventDate))) %>%
+        group_by(.data$event_month) %>%
+        select(.data$event_month) %>%
         count() %>%
         ungroup() %>%
-        arrange(factor(event_month, levels = month.name))
+        arrange(factor(.data$event_month, levels = .data$month.name))
     },
     error = function(e) {
       message("please enter non-null data")
@@ -63,15 +63,61 @@ monthlyOccurence <- function(data) {
   )
 }
 
-#' Bar Plot
-#' @description barplot function will plot  a bar chart using echarts4r libary.
-#' @param data, xAxisValues, yAxisValues,xaxisLabel,yaxisLabel,title,are paramaeters required to plot bar chart. flg_darkMode is boolean variable for dark mode.
-#' @import echarts4r htmlwidgets
+#' Create Interactive Bar Plot with echarts4r
+#'
+#' @description
+#' This function creates an interactive bar chart visualization using the echarts4r library.
+#' The visualization includes interactive features such as data zooming, tooltips, and export options.
+#' It supports both light and dark themes through the `flg_darkMode` parameter.
+#'
+#' @param data A data frame containing the data to be plotted.
+#' @param x_axis_var x axis variable name from the data.
+#' @param y_axis_var y axis variable name from the data.
+#' @param xaxisLabel Character string specifying the label for the x-axis.
+#' @param yaxisLabel Character string specifying the label for the y-axis.
+#' @param title Character string specifying the title of the plot.
+#' @param flg_darkMode Logical value (TRUE/FALSE) indicating whether to use dark mode styling.
+#'        Default is FALSE (light mode).
+#'
+#' @return An echarts4r visualization object that can be displayed in a Shiny app or R Markdown document.
+#'
+#' @details
+#' The function provides several interactive features:
+#' - Data zooming through a slider at the bottom
+#' - Tooltips showing exact values on hover
+#' - Option to switch between bar and line representations
+#' - Export functionality for saving the chart as an image
+#' - Data view for examining the underlying data
+#'
+#' The styling automatically adjusts based on the `flg_darkMode` parameter, with appropriate
+#' color schemes for both light and dark modes.
+#'
+#' @examples
+#' # Create sample data
+#' data <- data.frame(
+#'   event_month = month.abb[1:12],
+#'   n = sample(50:100, 12)
+#' )
+#'
+#' # Create and display the bar plot
+#' create_bar_plot(
+#'   data = data,
+#'   xaxisLabel = "Month",
+#'   yaxisLabel = "Count",
+#'   title = "Monthly Events",
+#'   flg_darkMode = FALSE
+#' )
+#'
+#' @import echarts4r
+#' @importFrom htmlwidgets JS
+#' @importFrom magrittr %>%
+#'
+#' @export
 
-barplot <- function(data, xaxisLabel, yaxisLabel, title, flg_darkMode = FALSE) {
+create_bar_plot <- function(data, x_axis_var = "event_month", y_axis_var = "n",  xaxisLabel, yaxisLabel, title, flg_darkMode = FALSE) {
   barplot <- data %>%
-    echarts4r::e_charts(event_month) %>%
-    echarts4r::e_bar(n, legend = FALSE) %>%
+    echarts4r::e_charts_(x_axis_var) %>%
+    echarts4r::e_bar_(y_axis_var, legend = FALSE) %>%
     echarts4r::e_axis_labels(
       x = xaxisLabel,
       y = yaxisLabel
@@ -91,8 +137,8 @@ barplot <- function(data, xaxisLabel, yaxisLabel, title, flg_darkMode = FALSE) {
     ) %>%
     echarts4r::e_title(title, left = "center", textStyle = list(fontWeight = "normal", color = "white")) %>%
     echarts4r::e_title("Drag the slider to access specific part of the plot",
-      left = "center", top = "85%",
-      textStyle = list(fontSize = 10, fontWeight = "bolder", color = "lightblue")
+                       left = "center", top = "85%",
+                       textStyle = list(fontSize = 10, fontWeight = "bolder", color = "lightblue")
     ) %>%
     echarts4r::e_grid(height = "60%") %>%
     echarts4r::e_color("green") %>%
@@ -130,8 +176,8 @@ barplot <- function(data, xaxisLabel, yaxisLabel, title, flg_darkMode = FALSE) {
       ) %>%
       echarts4r::e_title(title, left = "center", textStyle = list(fontWeight = "normal", color = "black")) %>%
       echarts4r::e_title("Drag the slider to access specific part of the plot",
-        left = "center", top = "85%",
-        textStyle = list(fontSize = 10, fontWeight = "bolder", color = "black")
+                         left = "center", top = "85%",
+                         textStyle = list(fontSize = 10, fontWeight = "bolder", color = "black")
       ) %>%
       echarts4r::e_datazoom(x_index = c(0, 1), backgroundColor = "lightgreen") %>%
       echarts4r::e_toolbox_feature(feature = "saveAsImage", iconStyle = list(borderColor = "black")) %>%
@@ -142,10 +188,12 @@ barplot <- function(data, xaxisLabel, yaxisLabel, title, flg_darkMode = FALSE) {
   }
   barplot
 }
+
 #' Leaflet Plot
 #' @description lealetPlot function will map a selected obeservation by user and distribution of its occurences.
 #' @param data used to plot the map
 #' @import leaflet
+#' @export
 leafletPlot <- function(data) {
   leaflet::leaflet(
     data = data
@@ -223,10 +271,20 @@ freshTheme <- fresh::create_theme(
 )
 
 #' UI function for the Biodiversity App
-#' @description This file will create helper functions required for structure building
+#'
+#' @description Creates the main dashboard page structure for the Biodiversity App
+#'
+#' @param title Character string for the dashboard title
+#' @param subtitle Character string for the dashboard subtitle
+#' @param context Character string to set the app context
+#'
+#' @return A bs4Dash dashboard page
+#'
 #' @importFrom shinyWidgets progressBar
 #' @import shiny waiter fresh
-#' @param title, subtitle, context for header , exra informaton and to set context respectivly.
+#'
+#' @export
+
 createPage <- function(title, subtitle, context) {
   bs4Dash::dashboardPage(
     preloader = list(html = tagList(waiter::spin_1(), "Loading ...")),
@@ -268,11 +326,25 @@ createPage <- function(title, subtitle, context) {
   )
 }
 
-#' Create Species Dropdown
-#' @description dropdownBasedOnRadioBtn will create a searchable dropdown for selecting species byVernacular name and by scientific name based on radio button for Search species by Vernacuar Name or Scientific Name
-#' @param radioBtn_search_byName andradioBtn_search_byNameID are Search by Name radio button input value and specific choice like Vernacular Name or Scientific Name.
-#'  id1, id2, label1, label2, choices1,choices2  used to give input ids, labels and list of all choices for selecting species byVernacular name and by scientific name
-
+#' Create Species Dropdown Based on Radio Button Selection
+#'
+#' @description Creates a searchable dropdown for species selection that changes based on the
+#'   radio button selection. Can display either vernacular names or scientific names.
+#'
+#' @param radioBtn_search_byName The current value of the radio button input
+#' @param radioBtn_search_byNameID The specific choice value to check against (e.g., "Vernacular" or "Scientific")
+#' @param id1 Input ID for the first dropdown option (typically vernacular names)
+#' @param label1 Label text for the first dropdown option
+#' @param choices1 List of choices for the first dropdown option
+#' @param id2 Input ID for the second dropdown option (typically scientific names)
+#' @param label2 Label text for the second dropdown option
+#' @param choices2 List of choices for the second dropdown option
+#'
+#' @return A shiny selectizeInput UI element with the appropriate options based on radio button selection
+#'
+#' @importFrom shiny selectizeInput
+#'
+#' @export
 dropdownBasedOnRadioBtn <- function(radioBtn_search_byName, radioBtn_search_byNameID, id1, label1, choices1, id2, label2, choices2) {
   if (radioBtn_search_byName == radioBtn_search_byNameID) {
     shiny::selectizeInput(
@@ -295,22 +367,40 @@ dropdownBasedOnRadioBtn <- function(radioBtn_search_byName, radioBtn_search_byNa
 
 #' Update Species Dropdown
 #' @description updateSpecies will update a searchbox and dropdown for selecting species byVernacular name and by scientific name in the server
-#' @param session, id, choices used to give input session, input id, and list of all choices for selecting species byVernacular name and by scientific name
-
+#' @param session The Shiny session object
+#' @param id The input ID of the selectize input to update
+#' @param choices A character vector of available species choices to display in the dropdown
+#'
+#' @return No return value; called for side effects
+#'
 updateSpecies <- function(session, id, choices) {
   updateSelectizeInput(
     session = session,
     inputId = id, choices = choices, server = TRUE
   )
 }
-#' Update Dropdown Based on Radio Button
-#' @description  updateDropdownBasedOnRadioBtnValues will updates input values of searchable dropdowns selecting species byVernacular name and by scientific name based on radio button for Search species by Vernacuar Name or Scientific Name
-#' @param radioBtn_search_byName and radioBtn_search_byNameID_ver,radioBtn_search_byNameID_sci are Search by Name radio button input value and specific choice like Vernacular Name or Scientific Name.
-#'  id_ver_name, id_sci_name are input values of Search Species by Vernacular Name or Scientific Name
-#'  scientificName_str, vernacularName_str constant string "scientificName" and "vernacularName"
-#' id_selected_sci_name, id_selected_ver_name,session are input values of Matching Scientific Name and Matching Vernacular Name and session of shiny app.
+#' Update dropdown inputs based on radio button selection
+#'
+#' @description
+#' Updates searchable dropdown inputs for species selection based on the user's choice
+#' of searching by vernacular name or scientific name. When a user selects a species
+#' in one dropdown, this function updates the corresponding value in the other dropdown.
+#'
+#' @param radioBtn_search_byName The current value of the radio button that determines
+#'        the search method (vernacular or scientific name)
+#' @param radioBtn_search_byNameID_ver The value of the radio button that corresponds to
+#'        searching by vernacular name
+#' @param id_ver_name The input value from the vernacular name dropdown
+#' @param scientificName_str Constant string identifier for scientific name, typically "scientificName"
+#' @param vernacularName_str Constant string identifier for vernacular name, typically "vernacularName"
+#' @param id_selected_sci_name The input value from the matching scientific name dropdown
+#' @param radioBtn_search_byNameID_sci The value of the radio button that corresponds to
+#'        searching by scientific name
+#' @param id_sci_name The input value from the scientific name dropdown
+#' @param id_selected_ver_name The input value from the matching vernacular name dropdown
+#' @param session The Shiny session object
+#'
 #' @import memoise htmlwidgets
-
 updateDropdownBasedOnRadioBtnValues <- function(radioBtn_search_byName,
                                                 radioBtn_search_byNameID_ver,
                                                 id_ver_name, scientificName_str, vernacularName_str,

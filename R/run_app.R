@@ -45,8 +45,7 @@ app_ui <- function(request) {
 }
 #' The application server-side
 #'
-#' @param input,output,session Internal parameters for {shiny}.
-#'     DO NOT REAMOVE.
+#' @param input,output,session internal parameters for shiny.
 #' @import shiny
 app_server <- function(input, output, session) {
 
@@ -70,9 +69,18 @@ app_server <- function(input, output, session) {
 
 #' Run Biodiversity Dashboard
 #'
-#' @importFrom shiny shinyApp
+#' This function launches the Biodiversity Dashboard Shiny application.
 #'
+#' @param ... Additional arguments to be passed to \code{shinyApp}
+#'
+#' @return A Shiny application object
+#' @importFrom shiny shinyApp
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' run_bd_app()
+#' }
 
 run_bd_app <- function(...) {
   shinyApp(
