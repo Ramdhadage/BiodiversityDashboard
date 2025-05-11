@@ -59,8 +59,8 @@ mod01_loadInputs_server <- function(id, inputList) {
       # Create a searchable drop down for search species by Scientific or Vernacular name based on Search by species radio button.
       dropdownBasedOnRadioBtn(
         radioBtn_search_byName = input$search_byName, radioBtn_search_byNameID = "Vernacular Name",
-        id1 = ns("ver_name"), label1 = "Search Species by Vernacular Name: ", choices1 = unique(load_bdData()$vernacularName),
-        id2 = ns("sci_name"), label2 = "Search Species by Scientific Name:", choices2 = unique(load_bdData()$scientificName)
+        id1 = ns("ver_name"), label1 = "Search Species by Vernacular Name: ", choices1 = unique(load_bd_data()$vernacularName),
+        id2 = ns("sci_name"), label2 = "Search Species by Scientific Name:", choices2 = unique(load_bd_data()$scientificName)
       )
     })
 

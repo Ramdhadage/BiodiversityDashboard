@@ -33,11 +33,11 @@ mod03_timelineVisualization_server <- function(id, inputList, flg_darkMode) {
     req(inputList$selectedBySciOrVerName)
 
     # select from bddata which contains species name given by user
-    bdDataFilteredBySpecies <- shiny::reactive(SelectedbdData(
-      radioBtn_search_byName = inputList$radioBtn_searchByName,
-      radioBtn_search_byNameID = "Vernacular Name",
-      searchByVerOrSciName = inputList$searchByVerOrSciName,
-      selectedByVerOrSciName = inputList$selectedBySciOrVerName
+    bdDataFilteredBySpecies <- shiny::reactive(selected_bd_data(
+      radio_btn_search_by_name = inputList$radioBtn_searchByName,
+      radio_btn_search_by_name_id = "Vernacular Name",
+      search_by_ver_or_sci_name = inputList$searchByVerOrSciName,
+      selected_by_ver_or_sci_name = inputList$selectedBySciOrVerName
     )) %>% bindCache(inputList$searchByVerOrSciName, inputList$selectedBySciOrVerName)
 
 

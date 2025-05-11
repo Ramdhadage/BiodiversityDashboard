@@ -7,8 +7,10 @@
 monthlyOccurence(data)
 }
 \arguments{
-\item{data}{is a data.frame which contain date format column, datecolumn is a date format column}
+\item{data}{is a data.frame which contain date format column,
+date column is a date format column}
 }
 \description{
-monthlyOccurence will count the occurence per month in chronological order
+monthlyOccurence will count the occurence per month in
+chronological order
 }

@@ -47,11 +47,11 @@ mod02_viewMap_server <- function(id, inputList) {
     req(inputList$selectedBySciOrVerName)
 
     # select from bddata which contains species name given by user
-    bdDataFilteredBySpecies <- shiny::reactive(SelectedbdData(
-      radioBtn_search_byName = inputList$radioBtn_searchByName,
-      radioBtn_search_byNameID = "Vernacular Name",
-      searchByVerOrSciName = inputList$searchByVerOrSciName,
-      selectedByVerOrSciName = inputList$selectedBySciOrVerName
+    bdDataFilteredBySpecies <- shiny::reactive(selected_bd_data(
+      radio_btn_search_by_name = inputList$radioBtn_searchByName,
+      radio_btn_search_by_name_id = "Vernacular Name",
+      search_by_ver_or_sci_name = inputList$searchByVerOrSciName,
+      selected_by_ver_or_sci_name = inputList$selectedBySciOrVerName
     )) %>% bindCache(inputList$searchByVerOrSciName, inputList$selectedBySciOrVerName)
 
     # added cache results to the function leafletPlot_m for performance improvement
