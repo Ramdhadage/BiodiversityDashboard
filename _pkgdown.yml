@@ -11,7 +11,7 @@ navbar:
       text: Reports
       menu:
         - text: Coverage report
-          href: coverage-report/coverage-report.html
+          href: coverage-report/
     github:
       icon: fa-github
       href: https://github.com/Ramdhadage/BiodiversityDashboard
