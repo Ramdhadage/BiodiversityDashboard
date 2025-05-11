@@ -25,12 +25,17 @@ Imports:
     shinycssloaders,
     shinyWidgets,
     htmltools,
-    tibble,
-    waiter
+    waiter,
+    cli,
+    checkmate,
+    rlang
 Suggests: 
+    fansi,
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    tibble,
+    tidyselect
 Config/testthat/edition: 3
 Depends: 
     R (>= 2.10)
