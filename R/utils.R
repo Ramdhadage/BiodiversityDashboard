@@ -1,50 +1,88 @@
-# Business Logic Functions ------------------------------------------------
 #' Filter biodiversity data based on search criteria
 #'
 #' This function subsets the biodiversity data based on user search criteria
-#' for species by their vernacular name and scientific name. The function handles
-#' two search modes determined by the radio button selection.
+#' for species by their vernacular name and scientific name.
+#' The function handles two search modes determined by the radio button
+#' selection.
 #'
-#' @param radioBtn_search_byName Character. The current value of the search mode radio button.
-#' @param radioBtn_search_byNameID Character. The ID value that indicates search by vernacular name mode.
-#' @param searchByVerOrSciName Character. The primary search term entered by the user.
-#' @param selectedByVerOrSciName Character. The secondary selection made by the user.
+#' @param data A data frame. The biodiversity dataset to filter.
+#' @param radio_btn_search_by_name Character. The current value of the search mode
+#' radio button.
+#' @param radio_btn_search_by_name_id Character. The ID value that indicates search
+#' by vernacular name mode.
+#' @param search_by_ver_or_sci_name Character. The primary search term entered
+#' by the user.
+#' @param selected_by_ver_or_sci_name Character. The secondary selection made
+#' by the user.
 #'
-#' @return A data frame containing the filtered biodiversity data that matches both
-#'   the vernacular name and scientific name criteria.
+#' @return A data frame containing the filtered biodiversity data that matches
+#' both the vernacular name and scientific name criteria.
 #'
 #' @details
 #' The function behaves differently based on the search mode:
-#' - If radioBtn_search_byName equals radioBtn_search_byNameID, it filters by vernacular name
-#'   first (searchByVerOrSciName) and then by scientific name (selectedByVerOrSciName).
-#' - Otherwise, it filters by scientific name first (searchByVerOrSciName) and then
-#'   by vernacular name (selectedByVerOrSciName).
+#' - If radio_btn_search_by_name equals radio_btn_search_by_name_id, it filters by
+#' vernacular name first (search_by_ver_or_sci_name) and then
+#' by scientific name (selected_by_ver_or_sci_name).
+#' - Otherwise, it filters by scientific name first (search_by_ver_or_sci_name) and
+#' then by vernacular name (selected_by_ver_or_sci_name).
 #' @importFrom dplyr filter
-SelectedbdData <- function(radioBtn_search_byName, radioBtn_search_byNameID,
-                           searchByVerOrSciName,
-                           selectedByVerOrSciName) {
+#' @importFrom checkmate assert_data_frame assert_string assert_character
+selected_bd_data <- function(data = load_bd_data(),
+                             radio_btn_search_by_name,
+                             radio_btn_search_by_name_id,
+                             search_by_ver_or_sci_name,
+                             selected_by_ver_or_sci_name) {
+
+  # Validate input parameters
+  checkmate::assert_data_frame(data, min.rows = 1, null.ok = FALSE)
+  checkmate::assert_string(radio_btn_search_by_name,
+                           min.chars = 1,
+                           null.ok = FALSE)
+  checkmate::assert_string(radio_btn_search_by_name_id,
+                           min.chars = 1,
+                           null.ok = FALSE)
+  checkmate::assert_string(search_by_ver_or_sci_name,
+                           min.chars = 1,
+                           null.ok = FALSE)
+  checkmate::assert_string(selected_by_ver_or_sci_name,
+                           min.chars = 1,
+                           null.ok = FALSE)
+
+  # Check if required columns exist in the data
+  checkmate::assert_subset(c("vernacularName", "scientificName"), colnames(data),
+                           empty.ok = FALSE)
+
   tryCatch(
     expr = {
-      if (radioBtn_search_byName == radioBtn_search_byNameID) {
+      if (radio_btn_search_by_name == radio_btn_search_by_name_id) {
         # Search by vernacular name first, then scientific name
-        load_bdData() %>%
-          dplyr::filter(.data$vernacularName == searchByVerOrSciName &
-                          .data$scientificName == selectedByVerOrSciName)
+        data %>%
+          dplyr::filter(
+            .data$vernacularName == search_by_ver_or_sci_name,
+            .data$scientificName == selected_by_ver_or_sci_name
+          )
       } else {
         # Search by scientific name first, then vernacular name
-        load_bdData() %>%
-          dplyr::filter(.data$vernacularName == selectedByVerOrSciName &
-                          .data$scientificName == searchByVerOrSciName)
+        data %>%
+          dplyr::filter(
+            data$vernacularName == selected_by_ver_or_sci_name,
+            data$scientificName == search_by_ver_or_sci_name
+          )
       }
     },
     error = function(e) {
-      message("Invalid parameter specified")
+      message("Error in filtering data: ", e$message)
+      NULL
     }
   )
 }
+
+
 #' Monthly Occurence of Animals
-#' @description monthlyOccurence will count the occurence per month in chronological order
-#' @param data is a data.frame which contain date format column, datecolumn is a date format column
+#' @description monthlyOccurence will count the occurence per month in
+#' chronological order
+#' @param data is a data.frame which contain date format column,
+#' date column is a date format column
 
 monthlyOccurence <- function(data) {
   tryCatch(
@@ -238,7 +276,7 @@ leafletPlot <- function(data) {
 #' @return A character vector of unique values from the selected column.
 #' @importFrom dplyr filter select distinct pull
 DistinctChoices <- function(filteredNameID, searchColumnName, selectedColumnName) {
-  load_bdData() %>%
+  load_bd_data() %>%
     dplyr::filter(.data[[searchColumnName]] == filteredNameID) %>%
     dplyr::select(.data[[selectedColumnName]]) %>%
     dplyr::distinct() %>%
